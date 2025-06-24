@@ -1,5 +1,7 @@
-import 'dotenv/config'
-import express from 'express'
+const dotenv = require('dotenv')
+dotenv.config()
+
+const express = require('express')
 const app = express()
 
 // get the port from env variable
