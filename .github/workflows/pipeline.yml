@@ -44,6 +44,7 @@ jobs:
       
   tag_release:
     needs: [simple_deployment_pipeline]
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-24.04
     permissions:
       contents: write
