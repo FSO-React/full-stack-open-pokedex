@@ -1,15 +1,15 @@
 name: Health check 
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize]
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches: [main]
+  #   types: [opened, synchronize]
   
-  # schedule:
-  #   - cron: '5,10,15,20,25,30,35,40,45,50,55 * * * *'
+  schedule:
+    - cron: '5,10,15,20,25,30,35,40,45,50,55 * * * *'
 
 jobs:
   check_health:
