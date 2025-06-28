@@ -39,6 +39,18 @@ jobs:
       - name: Trigger deployment in Render
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+      - name: Notify success to Discord
+        if: success()
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+            -d '{"content": ":white_check_mark: Test succeeded!"}' \
+            ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Notify failure to Discord
+        if: failure()
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+            -d '{"content": ":x: Test failed!"}' \
+            ${{ secrets.DISCORD_WEBHOOK }}
       
   tag_release:
     needs: [simple_deployment_pipeline]
