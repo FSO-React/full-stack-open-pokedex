@@ -12,7 +12,8 @@ on:
   #   - cron: '5,10,15,20,25,30,35,40,45,50,55 * * * *'
 
 jobs:
-  check-health:
+  check_health:
+    runs-on: ubuntu-24.04
     steps:
       - name: Check health of the deployed app
         uses: jtalk/url-health-check-action@v4
